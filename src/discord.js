@@ -38,6 +38,10 @@ function createEmbed(repo, branch, url, commits, size, links) {
     .setDescription(getChangeLog(commits, size, links))
     .setTimestamp(Date.parse(latest.timestamp));
 
+  if (!links) {
+    embed.setURL(url)
+  }
+
   return embed;
 }
 
