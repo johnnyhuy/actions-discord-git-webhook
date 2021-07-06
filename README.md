@@ -18,6 +18,10 @@ This is a fork of the original Discord Webhook GitHub Action, which was specific
 
 **Required** Now your Discord webhook token, it's the second part of the url. This is ignored if `webhook_url` is set.
 
+### `repo_name`
+
+Specify a custom repository name to overwrite the `username/repo` format.
+
 ## :framed_picture: Screenshots
 
 The standard webhook from GitHub to Discord just dumps the commit messages right into your chat, this is fine but sometimes you just want some extra information. Did the commit introduce any new issues? Did it even compile successfully? That's what this Action is for.
