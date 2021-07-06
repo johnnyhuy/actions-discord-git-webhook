@@ -2,14 +2,14 @@ name: 'discord-webhook'
 description: 'This GitHub Action sends  fancy and more meaningful discord messages for your commits. It includes Test results and coverage.'
 
 inputs:
-  webhook_id:
-    description: The Discord Webhook id
+  webhook_url:
+    description: Discord webhook URL
   id:
-    description: The Discord Webhook id
+    description: Discord Webhook ID (ignored if `webhook_url` is set)
   token:
-    description: The Discord Webhook token
+    description: Discord Webhook token (ignored if `webhook_url` is set)
   links:
-    description: The Discord Webhook token
+    description: Toggle whether to show repo links on the webhook event
     default: false
 
 runs:
