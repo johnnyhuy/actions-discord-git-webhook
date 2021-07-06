@@ -1,10 +1,16 @@
-# Fancier Discord Webhook
+# Discord Webhook
+
+> All credits go to the initial release by [baked-libs/discord-webhook](https://github.com/baked-libs/discord-webhook).
+
 This GitHub Action can produce fancy and more meaningful discord messages for your commits.
 <br>It includes Test results and coverage.
 
 ## :notebook: Requirements
+
 This currently works only for Maven projects.
+
 For Test Results and Coverage Reports you will need to use one of the following Maven plugins:
+
 * `maven-surefire`
 * `maven-failsafe`
 * `jacoco`
@@ -12,23 +18,29 @@ For Test Results and Coverage Reports you will need to use one of the following 
 ## :mailbox_with_no_mail: Inputs
 
 ### `id`
+
 **Required** This is the id of your Discord webhook, if you copy the webhook url, this will be the first part of it.
 
 ### `token`
+
 **Required** Now your Discord webhook token, it's the second part of the url.
 
 ## :framed_picture: Screenshots
+
 The standard webhook from GitHub to Discord just dumps the commit messages right into your chat, this is fine but sometimes you just want some extra information. Did the commit introduce any new issues? Did it even compile successfully? That's what this Action is for.<br>
 
 ### :spider_web: Standard Webhook
+
 ![old webhook](https://raw.githubusercontent.com/baked-libs/discord-webhook/master/assets/old-webhook.png)
 
 ### :star: New and improved Webhook
+
 ![tests passed](https://raw.githubusercontent.com/baked-libs/discord-webhook/master/assets/tests-passed.png)
 ![tests skipped](https://raw.githubusercontent.com/baked-libs/discord-webhook/master/assets/tests-skipped.png)
 ![tests failed](https://raw.githubusercontent.com/baked-libs/discord-webhook/master/assets/tests-failed.png)
 
 ### :books: Changes
+
 * Removed the obnoxious author name and image at the top (may be a toggle in the future)
 * The branch is now clearly visible "Slimefun4:master" -> "Slimefun4 (master)"
 * The repository is now referred to by its full name, including the repository owner
@@ -40,6 +52,7 @@ The standard webhook from GitHub to Discord just dumps the commit messages right
 * Dynamic embed color changes
 
 #### :art: Dynamic Coloring
+
 The color of the embed changes depending on the compiler and test results. Here's a breakdown:
 
 | Color | Description |
@@ -50,6 +63,7 @@ The color of the embed changes depending on the compiler and test results. Here'
 | green | The build was successful, no tests failed and none were skipped. |
 
 ## :scroll: Example setup
+
 To set up this Action, create a new workflow file under `.github/workflows/workflow_name.yml`.
 
 **Important:** Your project must have a `pom.xml` file, this Action only supports Maven at the moment.<br>
@@ -79,7 +93,7 @@ jobs:
         java-package: jdk
         architecture: x64
     - name: Run Discord Webhook
-      uses: baked-libs/discord-webhook@main
+      uses: johnnyhuy/discord-webhook@main
       with:
         id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
         token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
