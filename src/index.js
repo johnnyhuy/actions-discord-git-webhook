@@ -20,7 +20,7 @@ async function run() {
 		return;
 	}
 
-	const webhookUrl = core.getInput("webhook_url").split('/');
+	const webhookUrl = core.getInput("webhook_url");
 	const links = core.getInput("links")
 
 	if (!!webhookUrl) {
