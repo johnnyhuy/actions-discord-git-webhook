@@ -1,30 +1,12 @@
 {
-  "name": "fancier-discord-webhooks",
-  "version": "1.5.1",
-  "description": "This GitHub Action can produce fancy and more meaningful discord messages for your commits. It includes Test results and coverage.",
+  "name": "actions-discord-git-webhook",
+  "description": "This is a hard fork of the original Discord Webhook GitHub Action, which was specifically catered towards Java development. This is one a slightly more generic one where we just want to post commits via webhooks.",
   "main": "src/index.js",
+  "author": "johnnyhuy",
+  "license": "GPL-3.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Slimefun/discord-webhook.git"
-  },
-  "keywords": [
-    "github",
-    "action",
-    "discord",
-    "webhook",
-    "junit",
-    "tests",
-    "coverage"
-  ],
-  "author": "TheBusyBiscuit",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/Slimefun/discord-webhook/issues"
-  },
-  "homepage": "https://github.com/Slimefun/discord-webhook#readme",
   "dependencies": {
     "@actions/core": "^1.2.3",
     "@actions/github": "^5.0.0",

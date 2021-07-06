@@ -1,0 +1,22 @@
+name: Release
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Version
+        run: |
+          docker-compose build release
+          docker-compose run --rm release standard-version
+          git push --follow-tags origin master
+          docker-compose run --rm release conventional-github-releaser
+        env:
+          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
