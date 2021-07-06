@@ -3,7 +3,7 @@ const MAX_MESSAGE_LENGTH = 40;
 
 module.exports.send = (id, token, repo, branch, url, commits, size, links) =>
   new Promise((resolve, reject) => {
-    var client;
+    let client;
     console.log("Preparing Webhook...");
     try {
       client = new discord.WebhookClient(id, token);
@@ -22,9 +22,9 @@ module.exports.send = (id, token, repo, branch, url, commits, size, links) =>
 
 function createEmbed(repo, branch, url, commits, size, links) {
   console.log("Constructing Embed...");
-  var latest = commits[0];
+  let latest = commits[0];
 
-  var embed = new discord.RichEmbed()
+  let embed = new discord.RichEmbed()
     .setURL(url)
     .setTitle(
       size +
@@ -42,17 +42,17 @@ function createEmbed(repo, branch, url, commits, size, links) {
 }
 
 function getChangeLog(commits, size, links) {
-  var changelog = "";
+  let changelog = "";
 
-  for (var i in commits) {
+  for (let i in commits) {
     if (i > 3) {
       changelog += `+ ${size - i} more...\n`;
       break;
     }
 
-    var commit = commits[i];
-    var sha = commit.id.substring(0, 6);
-    var message =
+    let commit = commits[i];
+    let sha = commit.id.substring(0, 6);
+    let message =
       commit.message.length > MAX_MESSAGE_LENGTH
         ? commit.message.substring(0, MAX_MESSAGE_LENGTH) + "..."
         : commit.message;
