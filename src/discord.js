@@ -1,5 +1,5 @@
 const discord = require("discord.js");
-const MAX_MESSAGE_LENGTH = 40;
+const MAX_MESSAGE_LENGTH = 64;
 
 module.exports.send = (
   id,
