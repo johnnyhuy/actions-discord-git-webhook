@@ -15,6 +15,7 @@ async function run() {
   let id = core.getInput("id");
   let token = core.getInput("token");
   let customRepoName = core.getInput("repo_name");
+  let censorUsername = core.getInput("censor_username");
 
   console.log(`Received payload ${JSON.stringify(payload, null, 2)}`);
   console.log(`Received ${commits.length}/${size} commits...`);
@@ -36,7 +37,7 @@ async function run() {
   }
 
   webhook
-    .send(id, token, repository, branch, payload.compare, commits, size, links)
+    .send(id, token, repository, branch, payload.compare, commits, size, links, censorUsername)
     .catch((err) => core.setFailed(err.message));
 }
 
