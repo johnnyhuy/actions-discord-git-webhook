@@ -61,6 +61,7 @@ function createEmbed(
 }
 
 function getChangeLog(commits, size, hideLinks, censorUsername) {
+  console.log("Constructing Changelog...");
   let changelog = "";
 
   for (let i in commits) {
@@ -69,13 +70,13 @@ function getChangeLog(commits, size, hideLinks, censorUsername) {
       break;
     }
 
+    let commit = commits[i];
     const firstCharacter = commit.author.username[0];
     const lastCharacter = commit.author.username.length - 1;
     const username = censorUsername
       ? `${firstCharacter}...${lastCharacter}`
       : commit.author.username;
 
-    let commit = commits[i];
     let sha = commit.id.substring(0, 6);
     let message =
       commit.message.length > MAX_MESSAGE_LENGTH
