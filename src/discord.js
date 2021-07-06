@@ -26,14 +26,13 @@ function createEmbed(repo, branch, url, commits, size, links) {
 
   let embed = new discord.RichEmbed()
     .setURL(url)
-    .setTitle(
+    .setTitle("⚡ " +
       size +
-        (size == 1 ? " Commit was " : " Commits were ") +
-        "added to " +
+        (size == 1 ? " Commit " : " Commits ") +
+        "added to `" +
         repo +
-        " (" +
+        "` on 🌳" +
         branch +
-        ")"
     )
     .setDescription(getChangeLog(commits, size, links))
     .setTimestamp(Date.parse(latest.timestamp));
