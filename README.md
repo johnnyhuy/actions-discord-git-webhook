@@ -2,32 +2,25 @@
 
 > All credits go to the initial release by [baked-libs/discord-webhook](https://github.com/baked-libs/discord-webhook).
 
-This GitHub Action can produce fancy and more meaningful discord messages for your commits.
-<br>It includes Test results and coverage.
-
-## :notebook: Requirements
-
-This currently works only for Maven projects.
-
-For Test Results and Coverage Reports you will need to use one of the following Maven plugins:
-
-* `maven-surefire`
-* `maven-failsafe`
-* `jacoco`
+This is a fork of the original Discord Webhook GitHub Action, which was specifically catered towards Java development. This is one a slightly more generic one where we just want to post commits via webhooks.
 
 ## :mailbox_with_no_mail: Inputs
 
+### `webhook_url`
+
+**Required** The GitHub webhook URL comprised of both `id` and `token` fields.
+
 ### `id`
 
-**Required** This is the id of your Discord webhook, if you copy the webhook url, this will be the first part of it.
+**Required** This is the id of your Discord webhook, if you copy the webhook url, this will be the first part of it. This is ignored if `webhook_url` is set.
 
 ### `token`
 
-**Required** Now your Discord webhook token, it's the second part of the url.
+**Required** Now your Discord webhook token, it's the second part of the url. This is ignored if `webhook_url` is set.
 
 ## :framed_picture: Screenshots
 
-The standard webhook from GitHub to Discord just dumps the commit messages right into your chat, this is fine but sometimes you just want some extra information. Did the commit introduce any new issues? Did it even compile successfully? That's what this Action is for.<br>
+The standard webhook from GitHub to Discord just dumps the commit messages right into your chat, this is fine but sometimes you just want some extra information. Did the commit introduce any new issues? Did it even compile successfully? That's what this Action is for.
 
 ### :spider_web: Standard Webhook
 
@@ -55,22 +48,16 @@ The standard webhook from GitHub to Discord just dumps the commit messages right
 
 The color of the embed changes depending on the compiler and test results. Here's a breakdown:
 
-| Color | Description |
-| ----- | ----------- |
-| red | The build has failed. |
-| orange | The build was successful but some tests failed. |
+| Color  | Description                                                      |
+| ------ | ---------------------------------------------------------------- |
+| red    | The build has failed.                                            |
+| orange | The build was successful but some tests failed.                  |
 | yellow | The build was successful, no tests failed but some were skipped. |
-| green | The build was successful, no tests failed and none were skipped. |
+| green  | The build was successful, no tests failed and none were skipped. |
 
 ## :scroll: Example setup
 
 To set up this Action, create a new workflow file under `.github/workflows/workflow_name.yml`.
-
-**Important:** Your project must have a `pom.xml` file, this Action only supports Maven at the moment.<br>
-To report Unit Tests and coverage, you will need `maven-surefire` / `maven-failsafe` and/or `jacoco`.
-
-This workflow is rather simple, it checks out your repository, sets up Java and the webhook will then run `mvn test` and report the results to your discord webhook.
-You should configure the webhook id in advance.
 
 ```yaml
 name: Discord Webhook
@@ -78,20 +65,9 @@ name: Discord Webhook
 on: [push]
 
 jobs:
-  report-status:
-
+  git:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2.3.4
-    - name: Set up Java JDK 11
-      uses: actions/setup-java@v2.1.0
-      with:
-        distribution: 'adopt'
-        java-version: '11'
-        java-package: jdk
-        architecture: x64
     - name: Run Discord Webhook
       uses: johnnyhuy/discord-webhook@main
       with:
