@@ -22,7 +22,7 @@ async function run() {
 	const webhookUrl = core.getInput("webhook_url");
 	const links = core.getInput("links")
 
-	if (!!webhookUrl) {
+	if (webhookUrl !== '') {
 		const url = webhookUrl.split('/');
 		const id = url[5];
     	const token = url[6];
