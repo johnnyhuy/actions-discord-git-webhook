@@ -74,6 +74,30 @@ jobs:
     - name: Run Discord Webhook
       uses: johnnyhuy/discord-webhook@main
       with:
-        id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
-        token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
+        webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
+
+    # Disable URL links to the repository
+    # 
+    # - name: Run Discord Webhook
+    #   uses: johnnyhuy/discord-webhook@main
+    #   with:
+    #     webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
+    #     links: false
+
+    # Using an ID and token
+    # 
+    # - name: Run Discord Webhook
+    #   uses: johnnyhuy/discord-webhook@main
+    #   with:
+    #     id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
+    #     token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
+
+    # Using a custom repo name
+    # 
+    # - name: Run Discord Webhook
+    #   uses: johnnyhuy/discord-webhook@main
+    #   with:
+    #     id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
+    #     token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
+    #     repo_name: My Special Repo
 ```

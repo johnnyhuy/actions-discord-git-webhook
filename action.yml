@@ -8,6 +8,8 @@ inputs:
     description: Discord Webhook ID (ignored if `webhook_url` is set)
   token:
     description: Discord Webhook token (ignored if `webhook_url` is set)
+  repo_name:
+    description: Overwrite repository name with a custom one
   links:
     description: Toggle whether to show repo links on the webhook event
     default: false
