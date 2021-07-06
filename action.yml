@@ -18,8 +18,8 @@ inputs:
     default: false
 
 runs:
-  using: 'node12'
-  main: 'src/index.js'
+  using: 'docker'
+  image: 'action.Dockerfile'
 
 branding:
   icon: check-circle

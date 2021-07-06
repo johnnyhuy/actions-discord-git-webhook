@@ -44,7 +44,7 @@ The standard webhook from GitHub to Discord just dumps the commit messages right
 ![tests skipped](https://raw.githubusercontent.com/baked-libs/discord-webhook/master/assets/tests-skipped.png)
 ![tests failed](https://raw.githubusercontent.com/baked-libs/discord-webhook/master/assets/tests-failed.png)
 
-## :scroll: Example setup
+## :scroll: Usage
 
 To set up this Action, create a new workflow file under `.github/workflows/workflow_name.yml`.
 
@@ -98,3 +98,9 @@ jobs:
     #     token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
     #     repo_name: My Special Repo
 ```
+
+## Versioning changes
+
+Changes are versioned via GitHub Actions that use [`standard-version`](https://github.com/conventional-changelog/standard-version) to create Git tags and [`conventional-github-releaser`](https://github.com/conventional-changelog/releaser-tools/tree/master/packages/conventional-github-releaser) to submit GitHub releases.
+
+We follow the [`Conventional Commits`](https://www.conventionalcommits.org/en/v1.0.0/#summary) standard where commit messages get *automatically* analysed to produce a generated semantic version.
