@@ -10,6 +10,9 @@ inputs:
     description: Discord Webhook token (ignored if `webhook_url` is set)
   repo_name:
     description: Overwrite repository name with a custom one
+  censor_username:
+    description: Hide the full GitHub username
+    default: false
   links:
     description: Toggle whether to show repo links on the webhook event
     default: false

@@ -18,6 +18,10 @@ This is a fork of the original Discord Webhook GitHub Action, which was specific
 
 **Required** Now your Discord webhook token, it's the second part of the url. This is ignored if `webhook_url` is set.
 
+### `censor_username`
+
+Censor username with by only showing the first and last character. For example, `j...y` as `johnnyhuy`.
+
 ### `repo_name`
 
 Specify a custom repository name to overwrite the `username/repo` format.
@@ -87,6 +91,14 @@ jobs:
     #   with:
     #     webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
     #     links: false
+
+    # Censor username
+    # 
+    # - name: Run Discord Webhook
+    #   uses: johnnyhuy/discord-webhook@main
+    #   with:
+    #     webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
+    #     censor_username: false
 
     # Using an ID and token
     # 
