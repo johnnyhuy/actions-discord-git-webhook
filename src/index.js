@@ -21,6 +21,7 @@ async function run() {
 	}
 
 	const webhookUrl = core.getInput("webhook_url").split('/');
+	const links = core.getInput("links")
 
 	if (!!webhookUrl) {
 		const id = webhookUrl[5];
@@ -29,8 +30,6 @@ async function run() {
 		const id = core.getInput("id");
     	const token = core.getInput("token");
 	}
-
-	const links = !!core.getInput("links") ? core.getInput("links") : false;
 
 	analysis.start(isSkipped(payload.head_commit)).then((report) => {
         webhook.send(id, token, repository, branch, payload.compare, commits, size, report, links).catch(err => core.setFailed(err.message));
