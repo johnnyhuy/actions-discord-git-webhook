@@ -1,17 +1,7 @@
 const discord = require("discord.js");
 const MAX_MESSAGE_LENGTH = 40;
 
-module.exports.send = (
-  id,
-  token,
-  repo,
-  branch,
-  url,
-  commits,
-  size,
-  report,
-  links
-) =>
+module.exports.send = (id, token, repo, branch, url, commits, size, links) =>
   new Promise((resolve, reject) => {
     var client;
     console.log("Preparing Webhook...");
@@ -23,19 +13,18 @@ module.exports.send = (
     }
 
     client
-      .send(createEmbed(repo, branch, url, commits, size, report, links))
+      .send(createEmbed(repo, branch, url, commits, size, links))
       .then(() => {
         console.log("Successfully sent the message!");
         resolve();
       }, reject);
   });
 
-function createEmbed(repo, branch, url, commits, size, report, links) {
+function createEmbed(repo, branch, url, commits, size, links) {
   console.log("Constructing Embed...");
   var latest = commits[0];
 
   var embed = new discord.RichEmbed()
-    .setColor(getEmbedColor(report))
     .setURL(url)
     .setTitle(
       size +
@@ -48,10 +37,6 @@ function createEmbed(repo, branch, url, commits, size, report, links) {
     )
     .setDescription(getChangeLog(commits, size, links))
     .setTimestamp(Date.parse(latest.timestamp));
-
-  if (report.tests.length > 0) {
-    appendTestResults(embed, report);
-  }
 
   return embed;
 }
@@ -77,76 +62,4 @@ function getChangeLog(commits, size) {
   }
 
   return changelog;
-}
-
-function getEmbedColor(report) {
-  if (report.status === "FAILURE") {
-    return 0xe80000;
-  }
-
-  if (report.tests.length > 0) {
-    var skipped = 0;
-    var failures = 0;
-
-    for (var i in report.tests) {
-      var status = report.tests[i].status;
-      if (status === "SKIPPED") skipped++;
-      if (status === "FAILURE" || status === "ERROR") failures++;
-    }
-
-    if (failures > 0) {
-      return 0xff6600;
-    }
-    if (skipped > 0) {
-      return 0xff9900;
-    }
-
-    return 0x00ff00;
-  } else {
-    return 0x00bb22;
-  }
-}
-
-function appendTestResults(embed, report) {
-  var title = false;
-  var passes = 0;
-  var skipped = 0;
-  var failures = [];
-
-  for (var i in report.tests) {
-    var status = report.tests[i].status;
-    if (status === "OK") passes++;
-    else if (status === "SKIPPED") skipped++;
-    else failures.push(report.tests[i].name);
-  }
-
-  var tests = "";
-
-  if (passes > 0) {
-    tests += ` :green_circle: ${passes} Tests passed`;
-  }
-
-  if (skipped > 0) {
-    tests += ` :yellow_circle: ${skipped} Tests were skipped`;
-  }
-
-  if (failures.length > 0) {
-    tests += ` :red_circle: ${failures.length} Tests failed\n`;
-
-    for (var i in failures) {
-      if (i > 2) {
-        tests += `\n+ ${failures.length - i} more...`;
-        break;
-      }
-
-      tests += `\n${parseInt(i) + 1}. \`${failures[i]}\``;
-    }
-  }
-
-  embed.addField(
-    "Unit Tests" +
-      (failures.length > 0 ? "" : ` (~${report.coverage}% coverage):`),
-    tests
-  );
-  embed.setFooter(`Finished in ${report.time}s`);
 }
