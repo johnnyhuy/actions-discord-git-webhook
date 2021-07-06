@@ -5,10 +5,16 @@ const webhook = require("../src/discord.js");
 
 async function run() {
   const payload = github.context.payload;
-  const repository = payload.repository.full_name;
   const commits = payload.commits;
   const size = commits.length;
   const branch = payload.ref.split("/")[payload.ref.split("/").length - 1];
+  const webhookUrl = core.getInput("webhook_url");
+  const links = core.getInput("links");
+
+  let repository = payload.repository.full_name;
+  let id = core.getInput("id");
+  let token = core.getInput("token");
+  let customRepoName = core.getInput("repo_name");
 
   console.log(`Received payload ${JSON.stringify(payload, null, 2)}`);
   console.log(`Received ${commits.length}/${size} commits...`);
@@ -19,10 +25,9 @@ async function run() {
     return;
   }
 
-  const webhookUrl = core.getInput("webhook_url");
-  const links = core.getInput("links");
-  let id = core.getInput("id");
-  let token = core.getInput("token");
+  if (customRepoName !== "") {
+    repository = customRepoName;
+  }
 
   if (webhookUrl !== "") {
     const url = webhookUrl.split("/");
@@ -31,16 +36,7 @@ async function run() {
   }
 
   webhook
-    .send(
-      id,
-      token,
-      repository,
-      branch,
-      payload.compare,
-      commits,
-      size,
-      links
-    )
+    .send(id, token, repository, branch, payload.compare, commits, size, links)
     .catch((err) => core.setFailed(err.message));
 }
 
