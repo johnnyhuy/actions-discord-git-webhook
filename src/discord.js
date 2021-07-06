@@ -29,10 +29,10 @@ function createEmbed(repo, branch, url, commits, size, links) {
     .setTitle("⚡ " +
       size +
         (size == 1 ? " Commit " : " Commits ") +
-        "added to `" +
+        "- `" +
         repo +
-        "` on 🌳" +
-        branch
+        "` on 🌳 `" +
+        branch + "`"
     )
     .setDescription(getChangeLog(commits, size, links))
     .setTimestamp(Date.parse(latest.timestamp));
