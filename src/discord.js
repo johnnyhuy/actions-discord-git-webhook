@@ -46,6 +46,7 @@ function createEmbed(
   const count = size == 1 ? "Commit" : " Commits";
 
   let embed = new discord.RichEmbed()
+    .setColor('7dbbe6')
     .setTitle(
       `⚡ ${size} ${count} - \`${repo}\` on 🌳 \`${branch}\``
     )
@@ -82,8 +83,8 @@ function getChangeLog(commits, size, hideLinks, censorUsername) {
         ? commit.message.substring(0, MAX_MESSAGE_LENGTH) + "..."
         : commit.message;
     changelog += !hideLinks
-      ? `[\`${sha}\`](${commit.url}) ${message} by @${username}\n`
-      : `\`${sha}\` ${message}  by @${username})\n`;
+      ? `[\`${sha}\`](${commit.url}) ${message} by _@${username}_\n`
+      : `\`${sha}\` ${message}  by _@${username}_\n`;
   }
 
   return changelog;
