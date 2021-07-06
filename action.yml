@@ -1,13 +1,16 @@
-name: 'fancier-discord-webhooks'
+name: 'johnnys-discord-hooks'
 description: 'This GitHub Action sends  fancy and more meaningful discord messages for your commits. It includes Test results and coverage.'
 
 inputs:
+  webhook_id:
+    description: The Discord Webhook id
   id:
     description: The Discord Webhook id
-    required: true
   token:
     description: The Discord Webhook token
-    required: true
+  links:
+    description: The Discord Webhook token
+    default: false
 
 runs:
   using: 'node12'
