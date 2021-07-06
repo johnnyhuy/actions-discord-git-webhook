@@ -47,8 +47,7 @@ function createEmbed(
 
   let embed = new discord.RichEmbed()
     .setTitle(
-      `⚡ ${size} ${count} - \`${repo}\` on 🌳 \`
-        ${branch}\``
+      `⚡ ${size} ${count} - \`${repo}\` on 🌳 \`${branch}\``
     )
     .setDescription(getChangeLog(commits, size, hideLinks, censorUsername))
     .setTimestamp(Date.parse(latest.timestamp));
@@ -72,7 +71,7 @@ function getChangeLog(commits, size, hideLinks, censorUsername) {
 
     let commit = commits[i];
     const firstCharacter = commit.author.username[0];
-    const lastCharacter = commit.author.username.length - 1;
+    const lastCharacter = commit.author.username[commit.author.username.length - 1];
     const username = censorUsername
       ? `${firstCharacter}...${lastCharacter}`
       : commit.author.username;
