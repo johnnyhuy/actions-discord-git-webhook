@@ -41,7 +41,7 @@ function createEmbed(repo, branch, url, commits, size, links) {
   return embed;
 }
 
-function getChangeLog(commits, size) {
+function getChangeLog(commits, size, links) {
   var changelog = "";
 
   for (var i in commits) {
