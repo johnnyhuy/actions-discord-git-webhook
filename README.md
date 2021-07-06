@@ -2,7 +2,7 @@
 
 > All credits go to the initial release by [baked-libs/discord-webhook](https://github.com/baked-libs/discord-webhook).
 
-This is a fork of the original Discord Webhook GitHub Action, which was specifically catered towards Java development. This is one a slightly more generic one where we just want to post commits via webhooks.
+This is a hard fork of the original Discord Webhook GitHub Action, which was specifically catered towards Java development. This is one a slightly more generic one where we just want to post commits via webhooks.
 
 ## :mailbox_with_no_mail: Inputs
 
@@ -43,29 +43,6 @@ The standard webhook from GitHub to Discord just dumps the commit messages right
 ![tests passed](https://raw.githubusercontent.com/baked-libs/discord-webhook/master/assets/tests-passed.png)
 ![tests skipped](https://raw.githubusercontent.com/baked-libs/discord-webhook/master/assets/tests-skipped.png)
 ![tests failed](https://raw.githubusercontent.com/baked-libs/discord-webhook/master/assets/tests-failed.png)
-
-### :books: Changes
-
-* Removed the obnoxious author name and image at the top (may be a toggle in the future)
-* The branch is now clearly visible "Slimefun4:master" -> "Slimefun4 (master)"
-* The repository is now referred to by its full name, including the repository owner
-* The embed now includes a timestamp (it is actually the timestamp of the commit, not just the current date of when the webhook was sent)
-* Commit messages have slightly shorter limits and the committer is now better distinguishable from the commit message "Reduced technical debt - TheBusyBiscuit" -> "Reduced technical debt (@TheBusyBiscuit)"
-* Includes test results, passes will be prepended with a green circle, skips with yellow and failures with red.
-* It will also list the exact tests which failed (max of 4, then it will crop them)
-* An estimated test coverage is provided if you use the `jacoco` maven plugin.
-* Dynamic embed color changes
-
-#### :art: Dynamic Coloring
-
-The color of the embed changes depending on the compiler and test results. Here's a breakdown:
-
-| Color  | Description                                                      |
-| ------ | ---------------------------------------------------------------- |
-| red    | The build has failed.                                            |
-| orange | The build was successful but some tests failed.                  |
-| yellow | The build was successful, no tests failed but some were skipped. |
-| green  | The build was successful, no tests failed and none were skipped. |
 
 ## :scroll: Example setup
 
