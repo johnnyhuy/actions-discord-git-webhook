@@ -13,7 +13,7 @@ inputs:
   censor_username:
     description: Hide the full GitHub username
     default: false
-  links:
+  hide_links:
     description: Toggle whether to show repo links on the webhook event
     default: false
 

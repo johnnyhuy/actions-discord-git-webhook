@@ -26,6 +26,10 @@ Censor username with by only showing the first and last character. For example, 
 
 Specify a custom repository name to overwrite the `username/repo` format.
 
+### `hide_links`
+
+Hide links on embedded view.
+
 ## :framed_picture: Screenshots
 
 The standard webhook from GitHub to Discord just dumps the commit messages right into your chat, this is fine but sometimes you just want some extra information. Did the commit introduce any new issues? Did it even compile successfully? That's what this Action is for.
@@ -90,7 +94,7 @@ jobs:
     #   uses: johnnyhuy/discord-webhook@main
     #   with:
     #     webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
-    #     links: false
+    #     hide_links: true
 
     # Censor username
     # 
