@@ -32,7 +32,7 @@ function createEmbed(repo, branch, url, commits, size, links) {
         "added to `" +
         repo +
         "` on 🌳" +
-        branch +
+        branch
     )
     .setDescription(getChangeLog(commits, size, links))
     .setTimestamp(Date.parse(latest.timestamp));
