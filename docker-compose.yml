@@ -12,17 +12,3 @@ services:
     working_dir: /app
     environment:
       - CONVENTIONAL_GITHUB_RELEASER_TOKEN
-
-  publish:
-    image: johnnyhuy/actions-discord-git-webhook/publish:latest
-    command: python3 publish.py
-    build:
-      context: .
-      dockerfile: publish.Dockerfile
-    volumes:
-      - ".:/app"
-      - "~/.aws:/root/.aws"
-    working_dir: /app
-    environment:
-      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
-      - BUILDKITE_TAG
