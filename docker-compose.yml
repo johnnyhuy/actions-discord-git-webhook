@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: release.Dockerfile
     volumes:
-      - ".:/app"
-    working_dir: /app
+      - ".:/opt/workspace"
+    working_dir: /opt/workspace
     environment:
       - CONVENTIONAL_GITHUB_RELEASER_TOKEN
