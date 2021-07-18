@@ -12,3 +12,9 @@ services:
     working_dir: /opt/workspace
     environment:
       - CONVENTIONAL_GITHUB_RELEASER_TOKEN
+
+  action:
+    image: johnnyhuy/actions-discord-git-webhook/action:latest
+    build:
+      context: .
+      dockerfile: action.Dockerfile
