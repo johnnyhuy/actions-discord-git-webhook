@@ -12,6 +12,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Build
+        run: docker-compose build action
+
       - name: Version
         run: |
           docker-compose build release
