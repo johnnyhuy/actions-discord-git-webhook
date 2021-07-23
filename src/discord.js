@@ -45,7 +45,7 @@ function createEmbed(
   let latest = commits[0];
   const count = size == 1 ? "Commit" : " Commits";
 
-  let embed = new discord.RichEmbed()
+  let embed = new discord.MessageEmbed()
     .setColor('7dbbe6')
     .setTitle(
       `⚡ ${size} ${count} - \`${repo}\` on 🌳 \`${branch}\``
