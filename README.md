@@ -108,3 +108,17 @@ jobs:
 Changes are versioned via GitHub Actions that use [`standard-version`](https://github.com/conventional-changelog/standard-version) to create Git tags and [`conventional-github-releaser`](https://github.com/conventional-changelog/releaser-tools/tree/master/packages/conventional-github-releaser) to submit GitHub releases.
 
 We follow the [`Conventional Commits`](https://www.conventionalcommits.org/en/v1.0.0/#summary) standard where commit messages get *automatically* analysed to produce a generated semantic version.
+
+## Development
+
+NodeJS should be the only hard requirement to get this project working to make changes. Optionally, we can use Docker Compose to provide this dependency in conatiner with a volume to our host to make additional code changes.
+
+```bash
+# Local
+npm ci
+
+# Docker
+docker-compose build workspace
+docker-compose run --rm workspace
+npm ci
+```
