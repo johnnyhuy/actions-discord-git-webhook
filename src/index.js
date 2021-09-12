@@ -10,6 +10,7 @@ async function run() {
   const branch = payload.ref.split("/")[payload.ref.split("/").length - 1];
   const webhookUrl = core.getInput("webhook_url");
   const hideLinks = core.getInput("hide_links");
+  const color = core.getInput("color");
 
   let repository = payload.repository.full_name;
   let id = core.getInput("id");
@@ -37,7 +38,7 @@ async function run() {
   }
 
   webhook
-    .send(id, token, repository, branch, payload.compare, commits, size, hideLinks, censorUsername)
+    .send(id, token, repository, branch, payload.compare, commits, size, hideLinks, censorUsername, color)
     .catch((err) => core.setFailed(err.message));
 }
 

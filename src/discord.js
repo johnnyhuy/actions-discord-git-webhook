@@ -10,7 +10,8 @@ module.exports.send = (
   commits,
   size,
   hideLinks,
-  censorUsername
+  censorUsername,
+  color
 ) =>
   new Promise((resolve, reject) => {
     let client;
@@ -24,7 +25,7 @@ module.exports.send = (
 
     client
       .send(
-        createEmbed(repo, branch, url, commits, size, hideLinks, censorUsername)
+        createEmbed(repo, branch, url, commits, size, hideLinks, censorUsername, color)
       )
       .then(() => {
         console.log("Successfully sent the message!");
@@ -39,14 +40,15 @@ function createEmbed(
   commits,
   size,
   hideLinks,
-  censorUsername
+  censorUsername,
+  color
 ) {
   console.log("Constructing Embed...");
   let latest = commits[0];
   const count = size == 1 ? "Commit" : " Commits";
 
   let embed = new discord.MessageEmbed()
-    .setColor('7dbbe6')
+    .setColor(color)
     .setTitle(
       `⚡ ${size} ${count} - \`${repo}\` on 🌳 \`${branch}\``
     )
