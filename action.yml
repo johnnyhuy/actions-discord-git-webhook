@@ -16,6 +16,9 @@ inputs:
   hide_links:
     description: Toggle whether to show repo links on the webhook event
     default: false
+  color:
+    description: Color of the Discord embed
+    default: '7dbbe6'
 
 runs:
   using: 'docker'
