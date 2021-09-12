@@ -111,7 +111,7 @@ We follow the [`Conventional Commits`](https://www.conventionalcommits.org/en/v1
 
 ## Development
 
-NodeJS should be the only hard requirement to get this project working to make changes. Optionally, we can use Docker Compose to provide this dependency in conatiner with a volume to our host to make additional code changes.
+NodeJS should be the only hard requirement to get this project working to make changes. Optionally, we can use Docker Compose to provide this dependency in container with a volume to our host to make additional code changes.
 
 ```bash
 # Local
