@@ -25,7 +25,16 @@ module.exports.send = (
 
     client
       .send(
-        createEmbed(repo, branch, url, commits, size, hideLinks, censorUsername, color)
+        createEmbed(
+          repo,
+          branch,
+          url,
+          commits,
+          size,
+          hideLinks,
+          censorUsername,
+          color
+        )
       )
       .then(() => {
         console.log("Successfully sent the message!");
@@ -49,9 +58,7 @@ function createEmbed(
 
   let embed = new discord.MessageEmbed()
     .setColor(color)
-    .setTitle(
-      `⚡ ${size} ${count} - \`${repo}\` on 🌳 \`${branch}\``
-    )
+    .setTitle(`⚡ ${size} ${count} - \`${repo}\` on 🌳 \`${branch}\``)
     .setDescription(getChangeLog(commits, size, hideLinks, censorUsername))
     .setTimestamp(Date.parse(latest.timestamp));
 
@@ -74,7 +81,8 @@ function getChangeLog(commits, size, hideLinks, censorUsername) {
 
     let commit = commits[i];
     const firstCharacter = commit.author.username[0];
-    const lastCharacter = commit.author.username[commit.author.username.length - 1];
+    const lastCharacter =
+      commit.author.username[commit.author.username.length - 1];
     const username = censorUsername
       ? `${firstCharacter}...${lastCharacter}`
       : commit.author.username;
