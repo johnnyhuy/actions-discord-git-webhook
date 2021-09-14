@@ -31,7 +31,7 @@ exports.run = async function run() {
     repository = customRepoName;
   }
 
-  if (webhookUrl !== "") {
+  if (validate.webhookUrl(webhookUrl)) {
     const url = webhookUrl.split("/");
     id = url[5];
     token = url[6];
