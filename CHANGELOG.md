@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/johnnyhuy/actions-discord-git-webhook/compare/v0.0.5...v0.0.6) (2021-09-14)
+
+
+### Bug Fixes
+
+* Try close promise on complete ([25ee9cc](https://github.com/johnnyhuy/actions-discord-git-webhook/commit/25ee9cc5e484459100efb8d3dfbb1f2d8195ba8f))
+
 ### [0.0.5](https://github.com/johnnyhuy/actions-discord-git-webhook/compare/v0.0.4...v0.0.5) (2021-09-12)
 
 
