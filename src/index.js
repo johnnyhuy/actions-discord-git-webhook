@@ -1,6 +1,6 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
-
+const process = require("process");
 const webhook = require("../src/discord.js");
 
 async function run() {
@@ -37,16 +37,13 @@ async function run() {
     token = url[6];
   }
 
-  webhook
+  await webhook
     .send(id, token, repository, branch, payload.compare, commits, size, hideLinks, censorUsername, color)
-    .catch((err) => core.setFailed(err.message));
 }
 
-try {
-  run();
-} catch (error) {
-  core.setFailed(error.message);
-}
+run()
+  .then(() => process.exit(0))
+  .catch((err) => core.setFailed(err.message));
 
 function isSkipped(commit) {
   return commit.message.toLowerCase().includes("[skip]");
