@@ -2,6 +2,7 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const process = require("process");
 const webhook = require("./discord.js");
+const validate = require("./validate.js");
 
 exports.run = async function run() {
   const payload = github.context.payload;
@@ -31,10 +32,8 @@ exports.run = async function run() {
     repository = customRepoName;
   }
 
-  if (validate.webhookUrl(webhookUrl)) {
-    const url = webhookUrl.split("/");
-    id = url[5];
-    token = url[6];
+  if (webhookUrl) {
+    [id, token] = validate.getWebhook(webhookUrl)
   }
 
   await webhook.send(
