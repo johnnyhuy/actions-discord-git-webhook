@@ -26,14 +26,14 @@ jest.mock("discord.js", () => ({
 test("get webhook url", () => {
   const validWebhooks = [
     {
-      url: "https://discord.com/api/webhooks/funkywebhookid/secretsaucewebhooktoken",
-      id: "funkywebhookid",
-      token: "secretsaucewebhooktoken",
+      url: "https://discord.com/api/webhooks/123/secret_sauce-webhooktoken",
+      id: "123",
+      token: "secret_sauce-webhooktoken",
     },
     {
-      url: "discord.com/api/webhooks/funkywebhookid/secretsaucewebhooktoken",
-      id: "funkywebhookid",
-      token: "secretsaucewebhooktoken",
+      url: "discord.com/api/webhooks/123/secret_sauce-webhooktoken",
+      id: "123",
+      token: "secret_sauce-webhooktoken",
     },
   ];
   const invalidWebhooks = [
@@ -42,15 +42,13 @@ test("get webhook url", () => {
   ];
 
   for (const webhook of invalidWebhooks) {
-    expect(
-      getWebhook(webhook.url)
-    ).toThrow(ValidationException);
+    expect(() => getWebhook(webhook)).toThrow(ValidationException);
   }
 
   for (const webhook of validWebhooks) {
-    expect(
-      getWebhook(webhook.url)
-    ).toBe({ id: webhook.id, token: webhook.token });
+    const [id, token] = getWebhook(webhook.url);
+    expect(id).toBe(webhook.id);
+    expect(token).toBe(webhook.token);
   }
 });
 
