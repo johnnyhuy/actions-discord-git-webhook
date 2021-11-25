@@ -12,7 +12,7 @@
     "@actions/core": "^1.2.3",
     "@actions/github": "^5.0.0",
     "child-process-promise": "^2.2.1",
-    "discord.js": "^12.0.0",
+    "discord.js": "^13.0.0",
     "xml-library": "0.2.0"
   },
   "devDependencies": {
