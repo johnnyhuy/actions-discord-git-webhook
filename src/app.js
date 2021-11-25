@@ -19,13 +19,8 @@ async function main() {
     payload.repository.full_name = customRepoName;
   }
 
-  if (webhookUrl) {
-    [id, token] = validate.getWebhook(webhookUrl)
-  }
-
   await webhook.send(
-    id,
-    token,
+    webhookUrl
     payload,
     hideLinks,
     censorUsername,

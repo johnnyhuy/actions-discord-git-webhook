@@ -63,7 +63,7 @@ test("send webhook", async () => {
   const payload = require("./mocks/github_webhook_full.json");
 
   // Act
-  const data = await webhooks.send(123, 123, payload, false, false, "blue");
+  const data = await webhooks.send("https://discord.com/api/webhooks/123321123321/blah", payload, false, false, "blue");
 
   // Assert
   expect(data).toBeNull();
@@ -95,7 +95,7 @@ test("send failed webhook", async () => {
 
   try {
     // Act
-    await webhooks.send(123, 123, payload, false, false, "blue");
+    await webhooks.send("https://discord.com/api/webhooks/913404819069345793/MF4mRyPECq9h4KI64B-UomFCcF1fZ1Ka_EnsQ89Hs0e0iaRc3migPGYdirz8odcpt2Wv", payload, false, false, "blue");
   } catch (error) {
     // Assert
     expect(error).toStrictEqual(new Error());
