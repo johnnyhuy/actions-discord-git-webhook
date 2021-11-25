@@ -2,7 +2,6 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const process = require("process");
 const webhook = require("./webhooks.js");
-const validate = require("./validate.js");
 
 async function main() {
   let webhookUrl = core.getInput("webhook_url");
