@@ -19,6 +19,13 @@ async function main() {
   }
 
   if (!webhookUrl) {
+    console.log("Missing webhook URL, using id and token fields to generate a webhook URL")
+
+    if (!id || !token) {
+      core.setFailed("Webhook URL cannot be generated, please use ID and tokens or webhook_url fields")
+      process.exit(1)
+    }
+
     webhookUrl = `https://discord.com/api/webhooks/${id}/${token}`
   }
 
