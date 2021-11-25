@@ -2,8 +2,7 @@ const discord = require("discord.js");
 const MAX_MESSAGE_LENGTH = 128;
 
 module.exports.send = (
-  id,
-  token,
+  webhookUrl
   payload,
   hideLinks,
   censorUsername,
@@ -14,6 +13,10 @@ module.exports.send = (
   const size = commits.length;
   const branch = payload.ref.split("/")[payload.ref.split("/").length - 1];
   const url = payload.compare;
+
+  if (webhookUrl) {
+    [id, token] = validate.getWebhook(webhookUrl)
+  }
 
   if (commits.length === 0) {
     // This was likely a "--tags" push.
