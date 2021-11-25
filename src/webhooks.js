@@ -29,7 +29,7 @@ module.exports.send = (
   let embed = new discord.MessageEmbed()
     .setColor(color)
     .setTitle(`⚡ ${size} ${count} - \`${repository}\` on 🌳 \`${branch}\``)
-    .setDescription(this.getChangeLog(commits, size, hideLinks, censorUsername))
+    .setDescription(this.getChangeLog(commits, hideLinks, censorUsername))
     .setTimestamp(Date.parse(latest.timestamp));
 
   if (!hideLinks) {
@@ -56,13 +56,13 @@ module.exports.send = (
   });
 };
 
-module.exports.getChangeLog = (commits, size, hideLinks, censorUsername) => {
+module.exports.getChangeLog = (commits, hideLinks, censorUsername) => {
   console.log("Constructing Changelog...");
   let changelog = "";
 
   for (let i in commits) {
     if (i > 3) {
-      changelog += `+ ${size - i} more...\n`;
+      changelog += `+ ${commits.length - i} more...\n`;
       break;
     }
 
