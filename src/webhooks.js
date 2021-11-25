@@ -45,6 +45,7 @@ module.exports.send = (
       client = new discord.WebhookClient(id, token);
     } catch (error) {
       reject(error.message);
+      return false;
     }
 
     return client
