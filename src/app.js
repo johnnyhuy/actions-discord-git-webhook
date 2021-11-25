@@ -37,5 +37,5 @@ main()
   .then(() => process.exit(0))
   .catch((error) => {
     core.setFailed(error.message)
-    process.exit(0)
+    process.exit(1)
   });
