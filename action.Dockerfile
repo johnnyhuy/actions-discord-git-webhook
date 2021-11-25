@@ -8,4 +8,4 @@ COPY ./package.json /opt/workspace/package.json
 
 RUN npm ci
 
-ENTRYPOINT [ "node", "/opt/workspace/src/index.js" ]
+ENTRYPOINT [ "node", "/opt/workspace/src/app.js" ]
