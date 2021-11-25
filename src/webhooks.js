@@ -2,7 +2,7 @@ const discord = require("discord.js");
 const MAX_MESSAGE_LENGTH = 128;
 
 module.exports.send = (
-  webhookUrl
+  webhookUrl,
   payload,
   hideLinks,
   censorUsername,
@@ -14,14 +14,9 @@ module.exports.send = (
   const branch = payload.ref.split("/")[payload.ref.split("/").length - 1];
   const url = payload.compare;
 
-  if (webhookUrl) {
-    [id, token] = validate.getWebhook(webhookUrl)
-  }
-
   if (commits.length === 0) {
-    // This was likely a "--tags" push.
     console.log(`Aborting analysis, found no commits.`);
-    return;
+    return Promise.resolve();
   }
 
   console.log(`Received payload: ${JSON.stringify(payload, null, 2)}`);
@@ -45,7 +40,7 @@ module.exports.send = (
     let client;
     console.log("Preparing Discord webhook client...");
     try {
-      client = new discord.WebhookClient(id, token);
+      client = new discord.WebhookClient({url: webhookUrl});
     } catch (error) {
       reject(error);
     }

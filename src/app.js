@@ -5,7 +5,7 @@ const webhook = require("./webhooks.js");
 const validate = require("./validate.js");
 
 async function main() {
-  const webhookUrl = core.getInput("webhook_url");
+  let webhookUrl = core.getInput("webhook_url");
   const hideLinks = core.getInput("hide_links");
   const color = core.getInput("color");
   const id = core.getInput("id");
@@ -17,6 +17,10 @@ async function main() {
 
   if (customRepoName !== "") {
     payload.repository.full_name = customRepoName;
+  }
+
+  if (!webhookUrl) {
+    webhookUrl = `https://discord.com/api/webhooks/${id}/${token}`
   }
 
   await webhook.send(
