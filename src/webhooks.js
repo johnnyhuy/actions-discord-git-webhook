@@ -40,7 +40,7 @@ module.exports.send = (
     let client;
     console.log("Preparing Discord webhook client...");
     try {
-      client = new discord.WebhookClient({url: webhookUrl});
+      client = new discord.WebhookClient({ url: webhookUrl });
     } catch (error) {
       reject(error);
     }
