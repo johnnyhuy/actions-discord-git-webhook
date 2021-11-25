@@ -24,7 +24,7 @@ async function main() {
   }
 
   await webhook.send(
-    webhookUrl
+    webhookUrl,
     payload,
     hideLinks,
     censorUsername,
