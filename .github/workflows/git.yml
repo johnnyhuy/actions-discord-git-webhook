@@ -12,12 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v5
-
       - name: Run Discord Webhook
-        uses: johnnyhuy/actions-discord-git-webhook@${{ steps.branch-name.outputs.current_branch }}
+        uses: johnnyhuy/actions-discord-git-webhook@feature/test-cases
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           color: 12B92E
