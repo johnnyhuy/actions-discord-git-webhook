@@ -4,7 +4,7 @@ const process = require("process");
 const webhook = require("./webhooks.js");
 const validate = require("./validate.js");
 
-function main() {
+async function main() {
   const webhookUrl = core.getInput("webhook_url");
   const hideLinks = core.getInput("hide_links");
   const color = core.getInput("color");
