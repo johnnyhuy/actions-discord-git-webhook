@@ -1,5 +1,4 @@
 const { when } = require("jest-when");
-const { ValidationException, getWebhook } = require("../src/validate.js");
 const discord = require("discord.js");
 const webhooks = require("../src/webhooks");
 
