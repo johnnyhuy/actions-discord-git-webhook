@@ -44,10 +44,10 @@ module.exports.send = (
     try {
       client = new discord.WebhookClient(id, token);
     } catch (error) {
-      console.log('error!')
       reject(error);
     }
 
+    console.log("Sending webhook message...");
     return client
       .send(embed)
       .then((result) => {
