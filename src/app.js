@@ -36,6 +36,6 @@ async function main() {
 main()
   .then(() => process.exit(0))
   .catch((error) => {
-    core.setFailed(error.message)
+    core.setFailed(error)
     process.exit(1)
   });
