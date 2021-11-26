@@ -24,7 +24,7 @@ jobs:
           name: 'George the Lilac Cat'
           email: '95064644+georgelilaccat@users.noreply.github.com'
           actor: 'georgelilaccat'
-          token: '${{ secrets.GL_PAT_WEB_CENTRAL }}'
+          token: '${{ secrets.SERVICE_GITHUB_TOKEN }}'
 
       - name: Build
         run: docker-compose build release
