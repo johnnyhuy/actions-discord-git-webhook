@@ -29,7 +29,7 @@ module.exports.send = (
 
   let embed = new discord.MessageEmbed()
     .setColor(color)
-    .setTitle(`⚡ ${size} ${count}\n\`${repository}\`\n@ 🌳 \`${branch}\``)
+    .setTitle(`⚡ ${size} ${count}\n\📁`${repository}\`\n🌳 \`${branch}\``)
     .setDescription(this.getChangeLog(payload, hideLinks, censorUsername))
     .setTimestamp(Date.parse(latest.timestamp));
 
