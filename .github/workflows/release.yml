@@ -2,18 +2,22 @@ name: Release
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
+    name: Build & Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - name: Build
-        run: docker-compose build action
+      - name: Test
+        run: |
+          docker-compose -f docker-compose.test.yml build test
+          docker-compose -f docker-compose.test.yml run --rm test
 
       - name: Version
         run: |
