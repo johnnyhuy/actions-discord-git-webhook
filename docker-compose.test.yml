@@ -8,5 +8,3 @@ services:
     build:
       context: .
       dockerfile: action.Dockerfile
-    volumes:
-      - ".:/opt/workspace"
