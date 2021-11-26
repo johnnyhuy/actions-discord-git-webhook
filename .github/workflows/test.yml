@@ -14,12 +14,3 @@ jobs:
         run: |
           docker-compose -f docker-compose.test.yml build test
           docker-compose -f docker-compose.test.yml run --rm test
-
-      - name: Version
-        run: |
-          docker-compose build release
-          docker-compose run --rm release standard-version
-          git push --follow-tags origin main
-          docker-compose run --rm release conventional-github-releaser
-        env:
-          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
