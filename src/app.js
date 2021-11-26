@@ -1,7 +1,7 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
 const process = require("process");
-const webhook = require("./webhooks.js");
+const webhooks = require("./webhooks.js");
 
 async function main() {
   let webhookUrl = core.getInput("webhook_url");
@@ -29,7 +29,7 @@ async function main() {
     webhookUrl = `https://discord.com/api/webhooks/${id}/${token}`
   }
 
-  await webhook.send(
+  await webhooks.send(
     webhookUrl,
     payload,
     hideLinks,

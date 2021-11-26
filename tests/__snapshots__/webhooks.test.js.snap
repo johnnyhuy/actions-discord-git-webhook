@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get change log 1`] = `
+"[\`a11bef\`](https://github.com/johndoe/example_repo/commit/a11bef06a3f659402fe7563abf99ad00de2209e6) ci: Pipeline change by _@johndoe_
+[\`ca82a6\`](https://github.com/johndoe/example_repo/commit/ca82a6dff817ec66f44342007202690a93763949) fix: Some feature fix by _@johndoe_
+"
+`;
+
+exports[`get change log with censor username 1`] = `
+"[\`a11bef\`](https://github.com/johndoe/example_repo/commit/a11bef06a3f659402fe7563abf99ad00de2209e6) ci: Pipeline change by _@j...e_
+[\`ca82a6\`](https://github.com/johndoe/example_repo/commit/ca82a6dff817ec66f44342007202690a93763949) fix: Some feature fix by _@j...e_
+"
+`;
+
+exports[`get change log with hiding links 1`] = `
+"\`a11bef\` ci: Pipeline change  by _@johndoe_
+\`ca82a6\` fix: Some feature fix  by _@johndoe_
+"
+`;
+
+exports[`get change log with hiding links and censor username 1`] = `
+"\`a11bef\` ci: Pipeline change  by _@j...e_
+\`ca82a6\` fix: Some feature fix  by _@j...e_
+"
+`;
