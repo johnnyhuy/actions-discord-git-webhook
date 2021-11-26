@@ -8,3 +8,5 @@ services:
     build:
       context: .
       dockerfile: action.Dockerfile
+    volumes:
+      - "./tests:/opt/workspace/tests"
