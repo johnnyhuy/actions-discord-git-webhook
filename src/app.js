@@ -19,7 +19,7 @@ async function main() {
   }
 
   if (!webhookUrl) {
-    console.log("Missing webhook URL, using id and token fields to generate a webhook URL")
+    core.warning("Missing webhook URL, using id and token fields to generate a webhook URL")
 
     if (!id || !token) {
       core.setFailed("Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action")

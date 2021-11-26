@@ -1,4 +1,5 @@
 const discord = require("discord.js");
+const core = require("@actions/core");
 const MAX_MESSAGE_LENGTH = 128;
 
 module.exports.send = (
@@ -15,13 +16,13 @@ module.exports.send = (
   const url = payload.compare;
 
   if (commits.length === 0) {
-    console.log(`Aborting analysis, found no commits.`);
+    core.warning(`Aborting analysis, found no commits.`);
     return Promise.resolve();
   }
 
-  console.log(`Received payload: ${JSON.stringify(payload, null, 2)}`);
-  console.log(`Received ${commits.length}/${size} commits...`);
-  console.log("Constructing Embed...");
+  core.debug(`Received payload: ${JSON.stringify(payload, null, 2)}`);
+  core.debug(`Received ${commits.length}/${size} commits...`);
+  core.info("Constructing Embed...");
 
   let latest = commits[0];
   const count = size == 1 ? "Commit" : " Commits";
@@ -38,21 +39,22 @@ module.exports.send = (
 
   return new Promise((resolve, reject) => {
     let client;
-    console.log("Preparing Discord webhook client...");
+    core.info("Preparing Discord webhook client...");
+
     try {
       client = new discord.WebhookClient({ url: webhookUrl });
     } catch (error) {
       reject(error);
     }
 
-    console.log("Sending webhook message...");
-    
+    core.info("Sending webhook message...");
+
     return client
       .send({
-        embeds: [embed]
+        embeds: [embed],
       })
       .then((result) => {
-        console.log("Successfully sent the message!");
+        core.info("Successfully sent the message!");
         resolve(result);
       })
       .catch((error) => reject(error));
@@ -60,7 +62,7 @@ module.exports.send = (
 };
 
 module.exports.getChangeLog = (payload, hideLinks, censorUsername) => {
-  console.log("Constructing Changelog...");
+  core.info("Constructing Changelog...");
   const commits = payload.commits;
   let changelog = "";
 
