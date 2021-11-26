@@ -14,11 +14,15 @@ This is a hard fork of the original Discord Webhook GitHub Action, which was spe
 
 ### `id`
 
-**Required** This is the id of your Discord webhook, if you copy the webhook url, this will be the first part of it. This is ignored if `webhook_url` is set.
+> This is ignored if `webhook_url` is set
+
+**Required** This is the id of your Discord webhook, if you copy the webhook url, this will be the first part of it.
 
 ### `token`
 
-**Required** Now your Discord webhook token, it's the second part of the url. This is ignored if `webhook_url` is set.
+> This is ignored if `webhook_url` is set
+
+**Required** Now your Discord webhook token, it's the second part of the url. 
 
 ### `censor_username`
 
@@ -111,4 +115,3 @@ npm ci
 Changes are versioned via GitHub Actions that use [`standard-version`](https://github.com/conventional-changelog/standard-version) to create Git tags and [`conventional-github-releaser`](https://github.com/conventional-changelog/releaser-tools/tree/master/packages/conventional-github-releaser) to submit GitHub releases.
 
 We follow the [`Conventional Commits`](https://www.conventionalcommits.org/en/v1.0.0/#summary) standard where commit messages get *automatically* analysed to produce a generated semantic version.
-
