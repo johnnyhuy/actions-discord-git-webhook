@@ -73,12 +73,20 @@ module.exports.getChangeLog = (payload, hideLinks, censorUsername) => {
     }
 
     let commit = commits[i];
-    const firstCharacter = commit.author.username[0];
-    const lastCharacter =
+    const firstUsername = commit.author.username[0];
+    const lastUsername =
       commit.author.username[commit.author.username.length - 1];
     const username = censorUsername
-      ? `${firstCharacter}...${lastCharacter}`
+      ? `${firstUsername}...${lastUsername}`
       : commit.author.username;
+    const repository = payload.repository;
+
+    if (commit.message.includes(repository.full_name) && hideLinks) {
+      const firstRepository = repository.full_name[0];
+      const lastRepository =
+        repository.full_name[repository.full_name.length - 1];
+      commit.message = commit.message.replaceAll(repository.full_name, `${firstRepository}...${lastRepository}`);
+    }
 
     let sha = commit.id.substring(0, 6);
     let message =

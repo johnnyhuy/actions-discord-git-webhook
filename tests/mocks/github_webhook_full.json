@@ -16,7 +16,7 @@
       },
       "distinct": true,
       "id": "a11bef06a3f659402fe7563abf99ad00de2209e6",
-      "message": "ci: Pipeline change",
+      "message": "Merge branch 'master' of https://github.com/johndoe/example_repo into master",
       "timestamp": "2026-09-12T17:19:08+10:00",
       "tree_id": "fa67886fe5ed496ebe7ea107d83e55a474d24982",
       "url": "https://github.com/johndoe/example_repo/commit/a11bef06a3f659402fe7563abf99ad00de2209e6"
