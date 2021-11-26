@@ -4,9 +4,8 @@ services:
 
   test:
     image: johnnyhuy/actions-discord-git-webhook/test:latest
-    entrypoint: /usr/local/bin/npm run test
     build:
       context: .
-      dockerfile: action.Dockerfile
+      dockerfile: test.Dockerfile
     volumes:
       - ".:/opt/workspace"
