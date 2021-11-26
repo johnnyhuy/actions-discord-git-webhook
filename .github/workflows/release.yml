@@ -33,7 +33,6 @@ jobs:
         with:
           token: ${{ secrets.SERVICE_GITHUB_TOKEN }}
           branch: main
-          unprotect_reviews: true
           tags: true
 
       - name: Release
