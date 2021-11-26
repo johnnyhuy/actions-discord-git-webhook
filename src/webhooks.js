@@ -46,8 +46,11 @@ module.exports.send = (
     }
 
     console.log("Sending webhook message...");
+    
     return client
-      .send(embed)
+      .send({
+        embeds: [embed]
+      })
       .then((result) => {
         console.log("Successfully sent the message!");
         resolve(result);
