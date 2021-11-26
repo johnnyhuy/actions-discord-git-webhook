@@ -2,6 +2,15 @@ version: '3.8'
 
 services:
 
+  workspace:
+    image: johnnyhuy/actions-discord-git-webhook/workspace:latest
+    entrypoint: /bin/sh
+    build:
+      context: .
+      dockerfile: action.Dockerfile
+    volumes:
+      - ".:/opt/workspace"
+
   release:
     image: johnnyhuy/actions-discord-git-webhook/release:latest
     build:
