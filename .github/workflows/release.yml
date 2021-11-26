@@ -12,22 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Push admin
-        uses: CasperWA/push-protected@v2
-        with:
-          token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
-          branch: main
-          unprotect_reviews: true
-
       - name: Test
         run: |
           docker-compose -f docker-compose.test.yml build test
           docker-compose -f docker-compose.test.yml run --rm test
-
-      - name: Set Git user
-        run: |
-          git config user.name "georgelilaccat"
-          git config user.email "95064644+georgelilaccat@users.noreply.github.com"
 
       - name: Build
         run: docker-compose build release
@@ -35,14 +23,17 @@ jobs:
       - name: Version
         run: docker-compose run --rm release standard-version
 
-      - name: Push tags
-        uses: CasperWA/push-protected@v2
+      - uses: oleksiyrudenko/gha-git-credentials@v2.1
         with:
-          token: ${{ secrets.SERVICE_GITHUB_TOKEN }}
-          branch: main
-          tags: true
+          global: false
+          name: 'George the Lilac Cat'
+          email: '95064644+georgelilaccat@users.noreply.github.com'
+          actor: 'georgelilaccat'
+          token: '${{ secrets.GL_PAT_WEB_CENTRAL }}'
 
       - name: Release
-        run: docker-compose run --rm release conventional-github-releaser
+        run: |
+          git push --follow-tags origin main
+          docker-compose run --rm release conventional-github-releaser
         env:
           CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.SERVICE_GITHUB_TOKEN }}
