@@ -12,6 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Push admin
+        uses: CasperWA/push-protected@v2
+        with:
+          token: ${{ secrets.ADMIN_GITHUB_TOKEN }}
+          branch: main
+          unprotect_reviews: true
+
       - name: Test
         run: |
           docker-compose -f docker-compose.test.yml build test
