@@ -76,7 +76,7 @@ module.exports.getChangeLog = (payload, hideLinks, censorUsername) => {
     const firstUsername = commit.author.username[0];
     const lastUsername =
       commit.author.username[commit.author.username.length - 1];
-    const username = censorUsername
+    const username = !!censorUsername
       ? `${firstUsername}...${lastUsername}`
       : commit.author.username;
     const repository = payload.repository;
