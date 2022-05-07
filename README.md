@@ -57,7 +57,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Run Discord Webhook
-      uses: johnnyhuy/discord-webhook@main
+      uses: johnnyhuy/actions-discord-git-webhook@main 
       with:
         webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
 
@@ -68,28 +68,28 @@ jobs:
 ```yaml
     # Disable URL links to the repository
     - name: Run Discord Webhook
-      uses: johnnyhuy/discord-webhook@main
+      uses: johnnyhuy/actions-discord-git-webhook@main 
       with:
         webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
         hide_links: true
 
     # Censor username
     - name: Run Discord Webhook
-      uses: johnnyhuy/discord-webhook@main
+      uses: johnnyhuy/actions-discord-git-webhook@main 
       with:
         webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
         censor_username: false
 
     # Using an ID and token
     - name: Run Discord Webhook
-      uses: johnnyhuy/discord-webhook@main
+      uses: johnnyhuy/actions-discord-git-webhook@main 
       with:
         id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
         token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
 
     # Using a custom repo name
     - name: Run Discord Webhook
-      uses: johnnyhuy/discord-webhook@main
+      uses: johnnyhuy/actions-discord-git-webhook@main 
       with:
         id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
         token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
