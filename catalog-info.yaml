@@ -1,0 +1,46 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: actions-discord-git-webhook
+  description: A GitHub Action to send commit notifications to Discord via webhooks
+  tags:
+    - github-actions
+    - discord
+    - javascript
+spec:
+  type: library
+  lifecycle: production
+  owner: johnnyhuy
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: discord-webhook-api
+  description: Discord Webhook API for sending messages
+spec:
+  type: webhook
+  lifecycle: production
+  owner: discord
+  system: discord
+  definition: |
+    https://discord.com/developers/docs/resources/webhook
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: discord
+  description: Discord messaging platform
+spec:
+  owner: discord
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: actions-discord-git-webhook
+  description: GitHub repo for the actions-discord-git-webhook action
+spec:
+  type: github
+  target: "https://github.com/johnnyhuy/actions-discord-git-webhook"
