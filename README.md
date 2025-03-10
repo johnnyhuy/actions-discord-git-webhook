@@ -40,6 +40,10 @@ Hide links on embedded view.
 
 Color of the Discord embed.
 
+### `thread_id`
+
+The ID of the thread in forum channel to send the embed to.
+
 ## :scroll: Usage
 
 To set up this Action, create a new workflow file under `.github/workflows/workflow_name.yml`.
@@ -92,6 +96,14 @@ jobs:
     id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
     token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
     repo_name: My Special Repo
+
+# Send embed in forum thread
+- name: Run Discord Webhook
+  uses: johnnyhuy/actions-discord-git-webhook@main
+  with:
+    id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
+    token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
+    thread_id: ${{ secrets.YOUR_DISCORD_THREAD_ID }}
 ```
 
 ## Development
