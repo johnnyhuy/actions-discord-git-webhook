@@ -8,7 +8,7 @@ module.exports.send = (
   hideLinks,
   censorUsername,
   color,
-  threadId
+  threadId,
 ) => {
   const repository = payload.repository.full_name;
   const commits = payload.commits;
@@ -93,7 +93,7 @@ module.exports.getChangeLog = (payload, hideLinks, censorUsername) => {
         repository.full_name[repository.full_name.length - 1];
       commit.message = commit.message.replaceAll(
         repository.full_name,
-        `${firstRepository}...${lastRepository}`
+        `${firstRepository}...${lastRepository}`,
       );
     }
 
