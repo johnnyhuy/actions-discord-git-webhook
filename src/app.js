@@ -11,6 +11,7 @@ async function main() {
   const token = core.getInput("token");
   const customRepoName = core.getInput("repo_name");
   const censorUsername = core.getInput("censor_username");
+  const threadId = core.getInput("thread_id");
 
   let payload = github.context.payload;
 
@@ -19,14 +20,18 @@ async function main() {
   }
 
   if (!webhookUrl) {
-    core.warning("Missing webhook URL, using id and token fields to generate a webhook URL")
+    core.warning(
+      "Missing webhook URL, using id and token fields to generate a webhook URL"
+    );
 
     if (!id || !token) {
-      core.setFailed("Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action")
-      process.exit(1)
+      core.setFailed(
+        "Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action"
+      );
+      process.exit(1);
     }
 
-    webhookUrl = `https://discord.com/api/webhooks/${id}/${token}`
+    webhookUrl = `https://discord.com/api/webhooks/${id}/${token}`;
   }
 
   await webhooks.send(
@@ -34,13 +39,14 @@ async function main() {
     payload,
     hideLinks,
     censorUsername,
-    color
+    color,
+    threadId
   );
 }
 
 main()
   .then(() => process.exit(0))
   .catch((error) => {
-    core.setFailed(error)
-    process.exit(1)
+    core.setFailed(error);
+    process.exit(1);
   });

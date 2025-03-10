@@ -7,7 +7,8 @@ module.exports.send = (
   payload,
   hideLinks,
   censorUsername,
-  color
+  color,
+  threadId
 ) => {
   const repository = payload.repository.full_name;
   const commits = payload.commits;
@@ -47,11 +48,16 @@ module.exports.send = (
       reject(error);
     }
 
-    core.info("Sending webhook message...");
+    if (threadId) {
+      core.info(`Sending message to thread: ${threadId}`);
+    } else {
+      core.info("Sending message to channel...");
+    }
 
     return client
       .send({
         embeds: [embed],
+        threadId: threadId || null,
       })
       .then((result) => {
         core.info("Successfully sent the message!");
@@ -85,7 +91,10 @@ module.exports.getChangeLog = (payload, hideLinks, censorUsername) => {
       const firstRepository = repository.full_name[0];
       const lastRepository =
         repository.full_name[repository.full_name.length - 1];
-      commit.message = commit.message.replaceAll(repository.full_name, `${firstRepository}...${lastRepository}`);
+      commit.message = commit.message.replaceAll(
+        repository.full_name,
+        `${firstRepository}...${lastRepository}`
+      );
     }
 
     let sha = commit.id.substring(0, 6);
