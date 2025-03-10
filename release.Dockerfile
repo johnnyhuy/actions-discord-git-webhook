@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:20-alpine
 
 RUN apk --update add git
 RUN npm i --unsafe-perm -g standard-version

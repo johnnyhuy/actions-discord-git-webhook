@@ -9,16 +9,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "@actions/core": "^1.2.3",
+    "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0",
     "child-process-promise": "^2.2.1",
     "discord.js": "^14.18.0",
     "xml-library": "0.2.0"
   },
   "devDependencies": {
-    "jest": "^27.1.1",
-    "jest-when": "^3.3.1",
-    "prettier": "^2.4.0"
+    "jest": "^29.7.0",
+    "jest-when": "^3.7.0",
+    "prettier": "^3.5.3"
   },
   "standard-version": {
     "skip": {
