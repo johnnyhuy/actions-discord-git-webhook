@@ -28,7 +28,7 @@ module.exports.send = (
   let latest = commits[0];
   const count = size == 1 ? "Commit" : " Commits";
 
-  let embed = new discord.Embed()
+  let embed = new discord.EmbedBuilder()
     .setColor(`#${color}`)
     .setTitle(`⚡ ${size} ${count}\n📁\`${repository}\`\n🌳 \`${branch}\``)
     .setDescription(this.getChangeLog(payload, hideLinks, censorUsername))
