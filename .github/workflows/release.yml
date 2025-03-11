@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  release:
     name: Build & Release
     runs-on: ubuntu-latest
     steps:
@@ -14,8 +14,8 @@ jobs:
 
       - name: Test
         run: |
-          docker-compose -f docker-compose.test.yml build test
-          docker-compose -f docker-compose.test.yml run --rm test
+          docker compose -f compose.yaml build test
+          docker compose -f compose.yaml run --rm test
 
       - uses: oleksiyrudenko/gha-git-credentials@v2.1
         name: Set Git User
@@ -27,14 +27,14 @@ jobs:
           token: "${{ secrets.SERVICE_GITHUB_TOKEN }}"
 
       - name: Build
-        run: docker-compose build release
+        run: docker compose build release
 
       - name: Version
-        run: docker-compose run --rm release standard-version
+        run: docker compose run --rm release standard-version
 
       - name: Release
         run: |
           git push --follow-tags origin main
-          docker-compose run --rm release conventional-github-releaser
+          docker compose run --rm release conventional-github-releaser
         env:
           CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.SERVICE_GITHUB_TOKEN }}
