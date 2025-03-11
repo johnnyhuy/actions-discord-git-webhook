@@ -108,16 +108,49 @@ jobs:
 
 ## Development
 
-NodeJS should be the only hard requirement to get this project working to make changes. Optionally, we can use Docker Compose to provide this dependency in container with a volume to our host to make additional code changes.
+This project uses a Makefile to simplify Docker commands for development, testing, and releasing.
+
+### Prerequisites
+
+- Docker and Docker Compose
+- Make
+
+### Getting Started
 
 ```bash
-# Local
+# Start development workspace (using Docker)
+make workspace
 npm ci
 
-# Docker
-docker-compose build workspace
-docker-compose run --rm workspace
+# Or locally
 npm ci
+```
+
+### Testing
+
+```bash
+# Run tests
+make test
+```
+
+### Building and Releasing
+
+```bash
+# Build the release container
+make build
+
+# Create a new version
+make version
+
+# Push and release to GitHub
+make release
+```
+
+### Cleanup
+
+```bash
+# Clean up Docker resources
+make clean
 ```
 
 ### Versioning
