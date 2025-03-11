@@ -7,11 +7,11 @@ jobs:
     name: Run tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Test
         run: |
-          docker-compose -f docker-compose.test.yml build test
-          docker-compose -f docker-compose.test.yml run --rm test
+          docker compose -f compose.test.yaml build test
+          docker compose -f compose.test.yaml run --rm test
