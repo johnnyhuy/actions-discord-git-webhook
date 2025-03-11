@@ -3,28 +3,28 @@ test("get change log", async () => {
   const payload = require("./mocks/github_webhook_full.json");
 
   expect(getChangeLog(payload, false, false)).toMatchSnapshot();
-})
+});
 
 test("get change log with censor username", async () => {
   const { getChangeLog } = require("../src/webhooks");
   const payload = require("./mocks/github_webhook_full.json");
 
   expect(getChangeLog(payload, false, true)).toMatchSnapshot();
-})
+});
 
 test("get change log with hiding links", async () => {
   const { getChangeLog } = require("../src/webhooks");
   const payload = require("./mocks/github_webhook_full.json");
 
   expect(getChangeLog(payload, true, false)).toMatchSnapshot();
-})
+});
 
 test("get change log with hiding links and censor username", async () => {
   const { getChangeLog } = require("../src/webhooks");
   const payload = require("./mocks/github_webhook_full.json");
 
   expect(getChangeLog(payload, true, true)).toMatchSnapshot();
-})
+});
 
 test("send webhook", async () => {
   // Arrange
@@ -54,7 +54,7 @@ test("send webhook", async () => {
     payload,
     false,
     false,
-    "blue"
+    "blue",
   );
 
   // Assert
@@ -89,7 +89,7 @@ test("send failed webhook", async () => {
       payload,
       false,
       false,
-      "blue"
+      "blue",
     );
   } catch (error) {
     // Assert

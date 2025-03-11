@@ -1,7 +1,6 @@
-version: '3.8'
+version: "3.8"
 
 services:
-
   workspace:
     image: johnnyhuy/actions-discord-git-webhook/workspace:latest
     entrypoint: /bin/sh

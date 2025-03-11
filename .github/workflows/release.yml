@@ -21,10 +21,10 @@ jobs:
         name: Set Git User
         with:
           global: false
-          name: 'George the Lilac Cat'
-          email: '95064644+georgelilaccat@users.noreply.github.com'
-          actor: 'georgelilaccat'
-          token: '${{ secrets.SERVICE_GITHUB_TOKEN }}'
+          name: "George the Lilac Cat"
+          email: "95064644+georgelilaccat@users.noreply.github.com"
+          actor: "georgelilaccat"
+          token: "${{ secrets.SERVICE_GITHUB_TOKEN }}"
 
       - name: Build
         run: docker-compose build release

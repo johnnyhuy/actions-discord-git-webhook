@@ -25,7 +25,7 @@ test("error if webhook URL, token and ID is empty", async () => {
 
   // Assert
   expect(core.setFailed).toHaveBeenCalledWith(
-    "Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action"
+    "Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action",
   );
 });
 
@@ -45,7 +45,7 @@ test("error if token is empty", async () => {
 
   // Assert
   expect(core.setFailed).toHaveBeenCalledWith(
-    "Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action"
+    "Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action",
   );
 });
 
@@ -65,7 +65,7 @@ test("error if id is empty", async () => {
 
   // Assert
   expect(core.setFailed).toHaveBeenCalledWith(
-    "Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action"
+    "Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action",
   );
 });
 
@@ -86,6 +86,6 @@ test("error if webhook url is empty", async () => {
 
   // Assert
   expect(core.setFailed).not.toHaveBeenCalledWith(
-    "Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action"
+    "Webhook URL cannot be generated, please add `id` and `token` or `webhook_url` to the GitHub action",
   );
 });
