@@ -29,8 +29,7 @@ module.exports.send = (
   const count = size == 1 ? "Commit" : " Commits";
 
   // Handle color parameter properly: If it starts with #, use as is, otherwise use as color name
-  const colorValue = color.startsWith("#") ? color : color;
-
+  const colorValue = color;
   let embed = new discord.EmbedBuilder()
     .setColor(colorValue)
     .setTitle(`⚡ ${size} ${count}\n📁\`${repository}\`\n🌳 \`${branch}\``)
