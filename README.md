@@ -22,7 +22,7 @@ This is a hard fork of the original Discord Webhook GitHub Action, which was spe
 
 > This is ignored if `webhook_url` is set
 
-**Required** Now your Discord webhook token, it's the second part of the url. 
+**Required** Now your Discord webhook token, it's the second part of the url.
 
 ### `censor_username`
 
@@ -40,6 +40,10 @@ Hide links on embedded view.
 
 Color of the Discord embed.
 
+### `thread_id`
+
+The ID of the thread in forum channel to send the embed to.
+
 ## :scroll: Usage
 
 To set up this Action, create a new workflow file under `.github/workflows/workflow_name.yml`.
@@ -53,47 +57,53 @@ jobs:
   git:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
 
-    - uses: actions/checkout@v2
-
-    - name: Run Discord Webhook
-      uses: johnnyhuy/actions-discord-git-webhook@main 
-      with:
-        webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
-
+      - name: Run Discord Webhook
+        uses: johnnyhuy/actions-discord-git-webhook@main
+        with:
+          webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
 ```
 
 ### Alternatives
 
 ```yaml
-    # Disable URL links to the repository
-    - name: Run Discord Webhook
-      uses: johnnyhuy/actions-discord-git-webhook@main 
-      with:
-        webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
-        hide_links: true
+# Disable URL links to the repository
+- name: Run Discord Webhook
+  uses: johnnyhuy/actions-discord-git-webhook@main
+  with:
+    webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
+    hide_links: true
 
-    # Censor username
-    - name: Run Discord Webhook
-      uses: johnnyhuy/actions-discord-git-webhook@main 
-      with:
-        webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
-        censor_username: false
+# Censor username
+- name: Run Discord Webhook
+  uses: johnnyhuy/actions-discord-git-webhook@main
+  with:
+    webhook_url: ${{ secrets.YOUR_DISCORD_WEBHOOK_URL }}
+    censor_username: false
 
-    # Using an ID and token
-    - name: Run Discord Webhook
-      uses: johnnyhuy/actions-discord-git-webhook@main 
-      with:
-        id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
-        token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
+# Using an ID and token
+- name: Run Discord Webhook
+  uses: johnnyhuy/actions-discord-git-webhook@main
+  with:
+    id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
+    token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
 
-    # Using a custom repo name
-    - name: Run Discord Webhook
-      uses: johnnyhuy/actions-discord-git-webhook@main 
-      with:
-        id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
-        token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
-        repo_name: My Special Repo
+# Using a custom repo name
+- name: Run Discord Webhook
+  uses: johnnyhuy/actions-discord-git-webhook@main
+  with:
+    id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
+    token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
+    repo_name: My Special Repo
+
+# Send embed in forum thread
+- name: Run Discord Webhook
+  uses: johnnyhuy/actions-discord-git-webhook@main
+  with:
+    id: ${{ secrets.YOUR_DISCORD_WEBHOOK_ID }}
+    token: ${{ secrets.YOUR_DISCORD_WEBHOOK_TOKEN }}
+    thread_id: ${{ secrets.YOUR_DISCORD_THREAD_ID }}
 ```
 
 ## Development
@@ -114,4 +124,4 @@ npm ci
 
 Changes are versioned via GitHub Actions that use [`standard-version`](https://github.com/conventional-changelog/standard-version) to create Git tags and [`conventional-github-releaser`](https://github.com/conventional-changelog/releaser-tools/tree/master/packages/conventional-github-releaser) to submit GitHub releases.
 
-We follow the [`Conventional Commits`](https://www.conventionalcommits.org/en/v1.0.0/#summary) standard where commit messages get *automatically* analysed to produce a generated semantic version.
+We follow the [`Conventional Commits`](https://www.conventionalcommits.org/en/v1.0.0/#summary) standard where commit messages get _automatically_ analysed to produce a generated semantic version.
