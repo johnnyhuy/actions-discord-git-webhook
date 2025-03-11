@@ -28,8 +28,10 @@ module.exports.send = (
   let latest = commits[0];
   const count = size == 1 ? "Commit" : " Commits";
 
+  // Handle color parameter properly: If it starts with #, use as is, otherwise use as color name
+  const colorValue = color;
   let embed = new discord.EmbedBuilder()
-    .setColor(`#${color}`)
+    .setColor(colorValue)
     .setTitle(`⚡ ${size} ${count}\n📁\`${repository}\`\n🌳 \`${branch}\``)
     .setDescription(this.getChangeLog(payload, hideLinks, censorUsername))
     .setTimestamp(Date.parse(latest.timestamp));
