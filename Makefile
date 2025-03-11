@@ -1,10 +1,10 @@
-.PHONY: test build version release workspace
-
-test-build:
+test:
+ifdef CI
 	docker compose -f compose.test.yaml build test
-
-test: test-build
 	docker compose -f compose.test.yaml run --rm test
+else
+	npm run test
+endif
 
 build:
 	docker compose build release
