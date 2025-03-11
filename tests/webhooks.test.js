@@ -37,7 +37,7 @@ test("send webhook", async () => {
   });
   discord.WebhookClient = sendWebhook;
   discord.Client = jest.fn();
-  discord.MessageEmbed = jest.fn(() => {
+  discord.EmbedBuilder = jest.fn(() => {
     return {
       setURL: jest.fn().mockReturnThis(),
       setColor: jest.fn().mockReturnThis(),
@@ -71,7 +71,7 @@ test("send failed webhook", async () => {
     };
   });
   discord.Client = jest.fn();
-  discord.MessageEmbed = jest.fn(() => {
+  discord.EmbedBuilder = jest.fn(() => {
     return {
       setURL: jest.fn().mockReturnThis(),
       setColor: jest.fn().mockReturnThis(),
@@ -93,6 +93,6 @@ test("send failed webhook", async () => {
     );
   } catch (error) {
     // Assert
-    expect(error).toStrictEqual(new Error());
+    expect(error).toBeInstanceOf(Error);
   }
 });

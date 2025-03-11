@@ -6,16 +6,14 @@ on:
       - main
 
 jobs:
-  build:
+  release:
     name: Build & Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Test
-        run: |
-          docker-compose -f docker-compose.test.yml build test
-          docker-compose -f docker-compose.test.yml run --rm test
+        run: make test
 
       - uses: oleksiyrudenko/gha-git-credentials@v2.1
         name: Set Git User
@@ -27,14 +25,12 @@ jobs:
           token: "${{ secrets.SERVICE_GITHUB_TOKEN }}"
 
       - name: Build
-        run: docker-compose build release
+        run: make build
 
       - name: Version
-        run: docker-compose run --rm release standard-version
+        run: make version
 
       - name: Release
-        run: |
-          git push --follow-tags origin main
-          docker-compose run --rm release conventional-github-releaser
+        run: make release
         env:
           CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.SERVICE_GITHUB_TOKEN }}
