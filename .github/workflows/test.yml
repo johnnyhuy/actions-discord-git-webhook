@@ -12,4 +12,6 @@ jobs:
 
       - uses: asdf-vm/actions/install@v3
 
+      - run: make install
+
       - run: make test

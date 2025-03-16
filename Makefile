@@ -2,8 +2,10 @@ test:
 	npm run test
 
 install:
+ifndef CI
 	asdf plugin add nodejs || true
 	asdf install || true
+endif
 	npm install
 
 build:
