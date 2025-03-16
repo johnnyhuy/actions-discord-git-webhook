@@ -10,6 +10,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: asdf-vm/actions/install@v4
+      - uses: asdf-vm/actions/install@v3
 
       - run: make test
