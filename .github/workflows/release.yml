@@ -7,30 +7,28 @@ on:
 
 jobs:
   release:
-    name: Build & Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Test
-        run: make test
+      - uses: asdf-vm/actions/install@v3
+
+      - run: make install
+
+      - run: make test
 
       - uses: oleksiyrudenko/gha-git-credentials@v2.1
-        name: Set Git User
         with:
           global: false
-          name: "George the Lilac Cat"
-          email: "95064644+georgelilaccat@users.noreply.github.com"
-          actor: "georgelilaccat"
+          name: George the Lilac Cat
+          email: 95064644+georgelilaccat@users.noreply.github.com
+          actor: georgelilaccat
           token: "${{ secrets.SERVICE_GITHUB_TOKEN }}"
 
-      - name: Build
-        run: make build
+      - run: make build
 
-      - name: Version
-        run: make version
+      - run: make version
 
-      - name: Release
-        run: make release
+      - run: make release
         env:
           CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.SERVICE_GITHUB_TOKEN }}

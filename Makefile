@@ -1,10 +1,12 @@
 test:
-ifdef CI
-	docker compose -f compose.test.yaml build test
-	docker compose -f compose.test.yaml run --rm test
-else
 	npm run test
+
+install:
+ifndef CI
+	asdf plugin add nodejs || true
+	asdf install || true
 endif
+	npm install
 
 build:
 	docker compose build release
