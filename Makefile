@@ -8,9 +8,6 @@ ifndef CI
 endif
 	npm install
 
-build:
-	docker compose build release
-
 version:
 	npm run standard-version
 
