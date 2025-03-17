@@ -26,10 +26,10 @@ jobs:
           name: George the Lilac Cat
           email: 95064644+georgelilaccat@users.noreply.github.com
           actor: georgelilaccat
-          token: "${{ secrets.SERVICE_GITHUB_TOKEN }}"
+          token: "${{ secrets.GITHUB_TOKEN }}"
 
       - run: make version
 
       - run: make release
         env:
-          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.SERVICE_GITHUB_TOKEN }}
+          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
