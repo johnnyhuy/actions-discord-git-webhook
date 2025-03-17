@@ -20,14 +20,6 @@ jobs:
 
       - run: make test
 
-      - uses: oleksiyrudenko/gha-git-credentials@v2.1
-        with:
-          global: false
-          name: George the Lilac Cat
-          email: 95064644+georgelilaccat@users.noreply.github.com
-          actor: georgelilaccat
-          token: "${{ secrets.GITHUB_TOKEN }}"
-
       - run: make version
 
       - run: make release
