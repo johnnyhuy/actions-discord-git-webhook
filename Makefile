@@ -12,11 +12,11 @@ build:
 	docker compose build release
 
 version:
-	docker compose run --rm release standard-version
+	npm run standard-version
 
 release:
 	git push --follow-tags origin main
-	docker compose run --rm release conventional-github-releaser
+	npm run release
 
 workspace:
 	docker compose build workspace
